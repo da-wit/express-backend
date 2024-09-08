@@ -6,13 +6,13 @@ export class User {
     private username: string;
     private email: string;
     private password: string;
-    private encryptionService: EncryptionService;
+    private static encryptionService = new EncryptionService();
 
-    constructor(username: string, email: string, password: string, encryptionService: EncryptionService) {
-        this.encryptionService = encryptionService;
+    constructor(username: string, email: string, password: string) {
+
         this.username = username;
         this.email = email;
-        this.password = this.encryptionService.hashPassword(password);
+        this.password = User.encryptionService.hashPassword(password);
     }
 
     getUserId(): string {
@@ -46,13 +46,13 @@ export class User {
     }
 
     changePassword(oldPassword: string, newPassword: string, confirmPassword: string) {
-        if (!this.encryptionService.validatePassword(oldPassword, this.password)) {
+        if (!User.encryptionService.validatePassword(oldPassword, this.password)) {
             throw UserError.OldPasswordIsInCorrect();
         }
         if (newPassword !== confirmPassword) {
             throw UserError.PasswordMismatch();
         }
-        this.password = this.encryptionService.hashPassword(newPassword);
+        this.password = User.encryptionService.hashPassword(newPassword);
     }
 
 }

@@ -1,4 +1,4 @@
 import { Model } from "mongoose";
-import { UserDocument } from "./UserModel";
+import { IUserDocument } from "./UserModel";
 
-export interface IUserModel extends Model<UserDocument> { };
+export interface IUserModel extends Model<IUserDocument> { };

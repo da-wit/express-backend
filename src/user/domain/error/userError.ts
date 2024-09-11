@@ -6,6 +6,10 @@ export class UserError extends Error {
         Object.setPrototypeOf(this, new.target.prototype);
     }
 
+    static InvalidCredential(): UserError {
+        return new UserError("InvalidCredential")
+    }
+
     static UserNotFound(): UserError {
         return new UserError("User not found");
     }

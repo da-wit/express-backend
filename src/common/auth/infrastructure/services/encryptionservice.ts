@@ -1,7 +1,9 @@
 import bcrypt from "bcryptjs"
+import { IEncryptionService } from "../../domain/service/IEncryptionService";
 
 
-export class EncryptionService {
+
+export class EncryptionService implements IEncryptionService {
     private saltRounds = 10;
 
     hashPassword(password: string): string {

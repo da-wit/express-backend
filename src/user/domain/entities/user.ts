@@ -1,18 +1,20 @@
-import { EncryptionService } from "../../infrastructure/services/encryptionservice";
-import { UserError } from "../error/userError";
-
+import { Role } from "../../../common/Roles/Role";
+import { IUserDocument } from "../../infrastructure/database/models/UserModel";
 export class User {
     private id!: string;
     private username: string;
     private email: string;
     private password: string;
-    private static encryptionService = new EncryptionService();
+    private role: Role = Role.USER;
 
     constructor(username: string, email: string, password: string) {
-
         this.username = username;
         this.email = email;
-        this.password = User.encryptionService.hashPassword(password);
+        this.password = password;
+    }
+
+    static fromIDocumentToUser(user: IUserDocument): User {
+        return new User(user.username, user.email, user.password)
     }
 
     getUserId(): string {
@@ -31,28 +33,26 @@ export class User {
         return this.password;
     }
 
-    changeUserName(oldUserName: string, newUserName: string) {
-        if (oldUserName !== newUserName) {
-            throw UserError.userNameMismatch();
-        }
-        this.username = newUserName;
+    getRole(): Role {
+        return this.role;
     }
 
-    changeEmail(oldEmail: string, newEmail: string) {
-        if (oldEmail !== newEmail) {
-            throw UserError.EmailMismatch();
-        }
-        this.email = newEmail;
-    }
+    // changeUserName(oldUserName: string, newUserName: string) {
+    //     if (oldUserName !== newUserName) {
+    //         throw UserError.userNameMismatch();
+    //     }
+    //     this.username = newUserName;
+    // }
 
-    changePassword(oldPassword: string, newPassword: string, confirmPassword: string) {
-        if (!User.encryptionService.validatePassword(oldPassword, this.password)) {
-            throw UserError.OldPasswordIsInCorrect();
-        }
-        if (newPassword !== confirmPassword) {
-            throw UserError.PasswordMismatch();
-        }
-        this.password = User.encryptionService.hashPassword(newPassword);
-    }
+    // changeEmail(oldEmail: string, newEmail: string) {
+    //     if (oldEmail !== newEmail) {
+    //         throw UserError.EmailMismatch();
+    //     }
+    //     this.email = newEmail;
+    // }
+
+    // changePassword(newPassword: string) {
+    //     this.password = newPassword;
+    // }
 
 }

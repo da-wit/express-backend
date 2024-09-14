@@ -6,7 +6,7 @@ import { validate } from "class-validator";
 import { SellerError } from "../../domain/errors/sellerError";
 import { ISellerController } from "./ISellerController";
 import { UpdateCompanynameDto } from "../../app/dtos/UpdateCompanyname.dto";
-import { UpdateEmailDto } from "../../app/dtos/updateEmail.dto";
+import { UpdateEmailDto } from "../../app/dtos/UpdateEmail.dto";
 import { UpdateUsernameDto } from "../../app/dtos/UpdateUsername.dto";
 import { UpdatePasswordDto } from "../../app/dtos/UpdatePassword.dto";
 

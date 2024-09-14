@@ -1,7 +1,7 @@
 import { SellerError } from "../../domain/errors/sellerError";
 import { ISellerDocument } from "../../domain/repository/ISellerDocument";
 import { ISellerRepository } from "../../domain/repository/ISellerRepository";
-import { UpdateEmailDto } from "../dtos/updateEmail.dto";
+import { UpdateEmailDto } from "../dtos/UpdateEmail.dto";
 
 export class UpdateEmailCommand {
     private _sellerRepo: ISellerRepository;

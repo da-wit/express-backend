@@ -8,7 +8,7 @@ import { UpdatePasswordCommand } from "../command/UpdatePasswordCommand";
 import { UpdateUserNameCommand } from "../command/UpdateUsernameCommand";
 import { CreateSellerDto } from "../dtos/CreateSeller.dto";
 import { UpdateCompanynameDto } from "../dtos/UpdateCompanyname.dto";
-import { UpdateEmailDto } from "../dtos/updateEmail.dto";
+import { UpdateEmailDto } from "../dtos/UpdateEmail.dto";
 import { UpdatePasswordDto } from "../dtos/UpdatePassword.dto";
 import { UpdateUsernameDto } from "../dtos/UpdateUsername.dto";
 import { ISellerService } from "../interfaces/ISellerService";

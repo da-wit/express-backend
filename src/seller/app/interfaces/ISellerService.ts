@@ -3,7 +3,7 @@ import { ISellerDocument } from "../../domain/repository/ISellerDocument";
 import { ISellerRepository } from "../../domain/repository/ISellerRepository";
 import { CreateSellerDto } from "../dtos/CreateSeller.dto";
 import { UpdateCompanynameDto } from "../dtos/UpdateCompanyname.dto";
-import { UpdateEmailDto } from "../dtos/updateEmail.dto";
+import { UpdateEmailDto } from "../dtos/UpdateEmail.dto";
 import { UpdatePasswordDto } from "../dtos/UpdatePassword.dto";
 import { UpdateUsernameDto } from "../dtos/UpdateUsername.dto";
 

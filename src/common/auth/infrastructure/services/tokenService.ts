@@ -1,5 +1,5 @@
-import { UserPayload } from "../../../../user/api/interfaces/userPayload";
-import { Role } from "../../../Roles/Role";
+import { ISellerDocument } from "../../../../seller/domain/repository/ISellerDocument";
+import { IUserDocument } from "../../../../user/infrastructure/database/models/UserModel";
 import { ITokenService } from "../../domain/service/ITokenService";
 import jwt from 'jsonwebtoken';
 
@@ -11,11 +11,11 @@ export class TokenService implements ITokenService {
         this.accessTokenSecret = process.env.JWT_SECRET!;
     }
 
-    public async generateToken(user: UserPayload): Promise<string> {
+    public async generateToken(user: IUserDocument | ISellerDocument): Promise<string> {
         // console.log(this.accessTokenSecret)
         // console.log(process.env.EXPIRESIN)
         return new Promise((resolve, reject) => {
-            jwt.sign({ id: user.id, roel: user.role }, this.accessTokenSecret, { expiresIn: process.env.EXPIRESIN }, (err, token) => {
+            jwt.sign({ id: user.id, username: user.username, role: user.role }, this.accessTokenSecret, { expiresIn: process.env.EXPIRESIN }, (err, token) => {
                 if (err) {
                     return reject(err);
                 }
@@ -25,13 +25,13 @@ export class TokenService implements ITokenService {
         })
     }
 
-    public async verifyToken(token: string): Promise<UserPayload> {
+    public async verifyToken(token: string): Promise<IUserDocument | ISellerDocument> {
         return new Promise((resolve, reject) => {
             jwt.verify(token, this.accessTokenSecret, (err, decoded) => {
                 if (err) {
                     return reject(err);
                 }
-                resolve(decoded as UserPayload);
+                resolve(decoded as IUserDocument | ISellerDocument);
             });
         });
     }

@@ -1,11 +1,13 @@
 import { NextFunction, Request, Response } from "express";
 import { TokenService } from "../../infrastructure/services/tokenService";
 import { UserPayload } from "../../../../user/api/interfaces/userPayload";
+import { IUserDocument } from "../../../../user/infrastructure/database/models/UserModel";
+import { ISellerDocument } from "../../../../seller/domain/repository/ISellerDocument";
 
 declare global {
     namespace Express {
         interface Request {
-            user?: UserPayload;
+            user?: IUserDocument | ISellerDocument;
         }
     }
 }

@@ -16,6 +16,8 @@ const userSchema = new mongoose.Schema<IUserDocument>({
     email: { type: String, required: true },
     password: { type: String, required: true, minlength: 6 },
     role: { type: String, enum: Object.values(Role), default: Role.USER }
+}, {
+    timestamps: true
 })
 
 

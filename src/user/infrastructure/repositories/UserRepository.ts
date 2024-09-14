@@ -12,11 +12,7 @@ export class UserRepository implements IUserRepository {
 
     async save(user: User): Promise<IUserDocument> {
         console.log(user, "save")
-        const userDocument = new this.userModel({
-            username: user.getUserName(),
-            email: user.getUserEmail(),
-            password: user.getPassword(),
-        });
+        const userDocument = new this.userModel(user);
         await userDocument.save();
         return userDocument;
     }
@@ -57,7 +53,7 @@ export class UserRepository implements IUserRepository {
     }
 
     async findAll(): Promise<IUserDocument[]> {
-        const users = await this.userModel.find();
+        const users = await this.userModel.find().sort({ createdAt: -1 });
         // return users.map((user) => new User(user.username, user.email, user.password));
         return users;
     }

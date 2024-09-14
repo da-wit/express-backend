@@ -26,7 +26,7 @@ const loginService = new LoginService()
 const authController = new AuthController(loginService)
 
 
-authRouter.post('/login', authController.logIn);
+authRouter.post('/login/:role', authController.logIn);
 
 
 export default authRouter;

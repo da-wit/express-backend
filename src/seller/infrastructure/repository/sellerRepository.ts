@@ -28,7 +28,7 @@ export class SellerRepository implements ISellerRepository {
     }
 
     async findByCompanyName(companyname: string): Promise<ISellerDocument[] | null> {
-        const sellers = (await this._sellerModel.find()).filter((company) => company.companyname === companyname);
+        const sellers = await this._sellerModel.find({ companyname: companyname });
         if (!sellers) {
             return null
         }
@@ -50,7 +50,7 @@ export class SellerRepository implements ISellerRepository {
         return seller
     }
     async findAll(): Promise<ISellerDocument[]> {
-        const sellers = await this._sellerModel.find().sort({ createdAt: -1 })
+        const sellers = await this._sellerModel.find().populate('housesId').sort({ createdAt: -1 })
         return sellers;
     }
 }

@@ -7,12 +7,14 @@ export class Seller {
     private email: string;
     private password: string;
     private role: Role = Role.SELLER;
+    private housesId: string[] = []
 
-    constructor(companyname: string, username: string, email: string, password: string) {
+    constructor(companyname: string, username: string, email: string, password: string, houses: string[] = []) {
         this.companyname = companyname;
         this.username = username;
         this.email = email;
         this.password = password
+        this.housesId = houses
     }
 
 }

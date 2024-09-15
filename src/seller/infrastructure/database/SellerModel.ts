@@ -9,7 +9,8 @@ const sellerSchema = new mongoose.Schema<ISellerDocument>({
     username: { type: String, required: true, minlength: 3 },
     email: { type: String, required: true },
     password: { type: String, required: true, minlength: 6 },
-    role: { type: String, default: Role.SELLER, enum: Object.values(Role) }
+    role: { type: String, default: Role.SELLER, enum: Object.values(Role) },
+    housesId: [{ type: mongoose.Schema.Types.ObjectId, ref: "Houses" }]
 }, {
     timestamps: true
 })

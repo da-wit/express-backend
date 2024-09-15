@@ -7,4 +7,5 @@ export interface ISellerDocument extends Document {
     email: string;
     password: string,
     role: Role;
+    housesId: string[]
 };
